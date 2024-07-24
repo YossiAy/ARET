@@ -1,0 +1,17 @@
+{
+    "name": "my-demo-project",
+    "source": {
+        "type": "GITHUB",
+        "location": "https://github.com/YossiAy/ARET",
+        "buildspec": "buildspec.yml"
+    },
+    "artifacts": {
+        "type": "NO_ARTIFACTS"
+    },
+    "environment": {
+        "type": "LINUX_CONTAINER", // Use "ARM_CONTAINER" to run docker-mitm ARM
+        "image": "docker.io/testy1432/docker-mitm:latest",
+        "computeType": "BUILD_GENERAL1_SMALL",
+        "imagePullCredentialsType": "CODEBUILD"
+    }
+}

